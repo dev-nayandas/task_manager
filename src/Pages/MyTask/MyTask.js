@@ -5,7 +5,6 @@ import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const MyTask = () => {
-  const item = useLoaderData();
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -41,13 +40,13 @@ const MyTask = () => {
     }
   };
 
-  const handleCompleted = (data) => {
-    fetch("http://localhost:5000/tasks", {
+  const handleCompleted = (item) => {
+    fetch("http://localhost:5000/completed", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(item),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -55,12 +54,13 @@ const MyTask = () => {
           // toast.success("successfully done");
         }
       });
-
-    navigate("/completedtask");
   };
 
   return (
     <div>
+      <h1 className="text-4xl text-green-500 mt-20">
+        Your Added task are as following
+      </h1>
       <Table>
         <Table.Head>
           <Table.HeadCell>Task name</Table.HeadCell>
@@ -90,9 +90,11 @@ const MyTask = () => {
                 </Button>
               </Table.Cell>
               <Table.Cell>
-                <Button onClick={() => handleCompleted(data)} color="success">
-                  Completed
-                </Button>
+                <Link to={`/completedtask/${task._id}`}>
+                  <Button onClick={() => handleCompleted(task)}>
+                    Completed
+                  </Button>
+                </Link>
               </Table.Cell>
             </Table.Row>
           ))}

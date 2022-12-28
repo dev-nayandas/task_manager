@@ -36,11 +36,11 @@ const router = createBrowserRouter([
                 path:"/CompletedTask",
                 element: <CompletedTask></CompletedTask>,
             },
-            {
-                path:"/CompletedTask/:id",
-                element: <CompletedTask></CompletedTask>,
-                loader:({params}) => fetch(`http://localhost:5000/tasks1/${params.id}`)
-            },
+            // {
+            //     path:"/completedtask/:id",
+            //     element: <CompletedTask></CompletedTask>,
+            //     loader:({params}) => fetch(`http://localhost:5000/tasks1/${params.id}`)
+            // },
             {
                 path:"/SignIn",
                 element: <Login></Login>,
@@ -52,6 +52,11 @@ const router = createBrowserRouter([
             {
                 path:"/updatetask/:id",
                 element: <UpdateTask></UpdateTask>,
+                loader:({params}) => fetch(`http://localhost:5000/tasks1/${params.id}`)
+            },
+            {
+                path:"/completedtask/:id",
+                element: <CompletedTask></CompletedTask>,
                 loader:({params}) => fetch(`http://localhost:5000/tasks1/${params.id}`)
             }
 
