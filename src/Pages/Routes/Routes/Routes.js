@@ -6,6 +6,7 @@ import Main from "../../Layout/Main";
 import Login from "../../Login/Login";
 import MyTask from "../../MyTask/MyTask";
 import SignUp from "../../SignUp/SignUp";
+import UpdateTask from "../../UpdateTask/UpdateTask";
 
 
 
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
                 element: <CompletedTask></CompletedTask>,
             },
             {
+                path:"/CompletedTask/:id",
+                element: <CompletedTask></CompletedTask>,
+                loader:({params}) => fetch(`http://localhost:5000/tasks1/${params.id}`)
+            },
+            {
                 path:"/SignIn",
                 element: <Login></Login>,
             },
@@ -43,6 +49,11 @@ const router = createBrowserRouter([
                 path:"/SignUp",
                 element: <SignUp></SignUp>,
             },
+            {
+                path:"/updatetask/:id",
+                element: <UpdateTask></UpdateTask>,
+                loader:({params}) => fetch(`http://localhost:5000/tasks1/${params.id}`)
+            }
 
         ]
     }

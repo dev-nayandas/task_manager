@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="p-6">
       <div>
         <h1 className="text-5xl text-green-800">Please Login To Add Task</h1>
       </div>
